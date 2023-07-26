@@ -1,0 +1,12 @@
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Ajuste a altura do container conforme necessário */
+  text-align: center;
+}
+
+.header img{
+    width: 100%;
+    max-width: 250px; /* Ajuste o tamanho máximo da imagem conforme necessário */
+}

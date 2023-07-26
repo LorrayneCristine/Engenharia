@@ -1,0 +1,104 @@
+:root {
+    --bg-dark: #1A2F3A;
+
+    --logo-height: 100px;
+    --header-height: 100px;
+    --aside-width: 225px;
+    --footeeer-height: 40px;
+
+    --shadow:
+        0 2px 23px 0 rgba(0, 0, 0, 0.1),
+        0 2px 49px 0 rgba(0, 0, 0, 0.16);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'sans-serif';
+}
+
+/* Layout em grid*/
+
+.app {
+    display: grid;
+    grid-template-rows: auto 1fr; /* Cabeçalho e área dividida em 2 partes */
+    gap: 10px; /* Espaçamento entre os elementos */
+    height: 100vh; /* Altura total da viewport */
+  }
+  
+  .header {
+    background-color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divisão em 2 colunas */
+    gap: 10px; /* Espaçamento entre as áreas */
+  }
+  
+  .left{
+    padding: 10px;
+  }
+
+  .left form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .left button{
+    padding: 10px 20px;
+    margin-bottom: 10px;
+  }
+
+  .left divider{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .left divider span {
+    flex-grow: 1;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .left label{
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .left input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .left button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .left a {
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+
+  .right img{
+    width: 100%; /* Redimensiona a imagem para ocupar toda a largura da div */
+    height: auto;
+    overflow: hidden; /* Esconde as partes da imagem fora da div */
+    clip-path: polygon(0.95% 0, 100% 0, 100% 100%, 0.95% 100%); /* Define o corte de 10% no lado direito da imagem */
+  }
+
+
+  .right{
+    padding-right: none;
+  }

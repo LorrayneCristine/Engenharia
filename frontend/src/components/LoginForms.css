@@ -1,0 +1,172 @@
+.loginGeral{
+    width: 100%;
+    height: 100%;
+}
+
+.error-alert {
+  position: absolute;
+  top: 60px;
+  left: 5%;
+  padding: 10px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.error-message {
+  margin-right: 10px;
+}
+
+.close-button {
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: #721c24;
+  cursor: pointer;
+}
+
+
+.divididaLogin{
+    display: flex;   
+    flex-direction: row;
+    padding-top: 50px;
+    height: 550px;
+    justify-self: center; /* Alinha o elemento à extrema esquerda */
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+
+}
+
+.tituloLogin{
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; 
+}
+
+.Logincaixa{
+    color: #000;
+    width: 70%;
+    display: flex;
+  flex-direction: column;
+    justify-self: center; /* Alinha o elemento à extrema esquerda */
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+
+}
+.corLogin{
+    display: flex;
+    justify-self: center; /* Alinha o elemento à extrema esquerda */
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    width: 500px;
+    height: auto;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.00);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
+
+}
+
+.GoogleFacebook{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    justify-self: center; /* Alinha o elemento à extrema esquerda */
+}
+.GoogleFacebook button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center; 
+    height: 40px;
+    width: 170px;
+
+}
+.geral-login {
+    width: 500px;
+    justify-self: center; /* Alinha o elemento à extrema esquerda */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-self: center; 
+  }
+  
+  .geral-login .loginForms{
+    display: flex;
+    align-items: start;
+    text-align: left;
+    width: 80%;
+
+  }
+  .geral-login div {
+    margin-bottom: 10px;
+
+  }
+  
+  .geral-login label {
+    width: auto;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+  }
+  
+  .geral-login input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  .geral-login button {
+    padding: 10px;
+    width: 90%;
+    border-radius: 4px;
+    background-color: #ffa600;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+
+    margin-bottom: 15px;
+  }
+  
+  .geral-login button:hover {
+    background: #FFBD59; 
+  }
+  
+
+  .divididaLogin .animais{
+    display: flex;
+    justify-self: end; /* Alinha o elemento à extrema esquerda */
+
+    justify-content: flex-end; /* Alinha horizontalmente ao centro */
+
+  }
+
+  .divididaLogin .animais img{
+    width: 550px;
+  }
+
+  .link-login {
+    color: #0056b3; /* Cor do link ao passar o mouse (um tom mais escuro de azul) */
+    text-decoration: none; /* Remover a sublinhado padrão */
+    transition: color 0.2s; /* Adicionar uma transição para o efeito de hover */
+  }
+  
+  /* Adicione um estilo para o hover do link */
+  .link-login:hover {
+    color: #ffa600;; /* Cor do link (azul) */
+  }

@@ -1,0 +1,23 @@
+/* LoginButtons.css */
+.login-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
+
+  }
+  
+  .facebook-button {
+    /* Estilos do botão do Facebook */
+    background-color: #3b5998;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
