@@ -104,3 +104,30 @@ exports.create = async (req, res) => {
         res.status(500).json({ message: "Erro ao salvar" });
     }
 };
+
+// Função para buscar cuidadores com filtros
+exports.buscarCuidadores = async (req, res) => {
+    try {
+      // Obter os filtros da query da requisição
+      const { acceptsDogs, acceptsCats, acceptsBirds, includesPasseio, includesBanho, includesAlimentacao } = req.query;
+  
+      // Montar o filtro com base nos parâmetros recebidos
+      const filtro = {
+        'animalTypes.dogs': acceptsDogs === 'true',
+        'animalTypes.cats': acceptsCats === 'true',
+        'animalTypes.birds': acceptsBirds === 'true',
+        'servicesIncluded.passeio': includesPasseio === 'true',
+        'servicesIncluded.banho': includesBanho === 'true',
+        'servicesIncluded.alimentacao': includesAlimentacao === 'true',
+      };
+  
+      // Buscar cuidadores com o filtro
+      const cuidadores = await Cuidador.find(filtro);
+  
+      res.status(200).json(cuidadores); // Retornar os cuidadores filtrados como resposta
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erro ao buscar cuidadores' });
+    }
+  };
+  

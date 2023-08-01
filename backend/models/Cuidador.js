@@ -30,4 +30,4 @@ const CuidadorSchema = new Schema({
     },
 })
 
-module.exports = mongoose.model("Cuidador", CuidadorSchema)
+module.exports = mongoose.model("Cuidador", CuidadorSchema, 'cuidadors')
