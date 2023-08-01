@@ -6,15 +6,45 @@ const jwt = require('jsonwebtoken')
 const path = require('path');
 const app = express()
 const cors = require('cors');
+//const { authenticateUser } = require("./middleware/authenticateUser");
+
+
 //Cinfig JSON response
 app.use(express.json())
 app.use(cors());
+
+// Middleware para autenticação do usuário normal
+function authenticateUser(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+  
+    if (!token) {
+      return res.status(401).json({ msg: 'Acesso negado' });
+    }
+  
+    try {
+      const secret = process.env.SECRET;
+      const decodedToken = jwt.verify(token, secret);
+  
+      // Adicionar o ID do usuário ao objeto da requisição para ser acessível nos controladores
+      req.userId = decodedToken.id;
+  
+      next();
+    } catch (error) {
+      res.status(400).json({ msg: 'Token inválido' });
+    }
+  }
+
+//Controllers
+const CuidadorController = require('./controllers/cuidadorController');
 
 
 //Models
 const Cuidador = require ('./models/Cuidador')
 
 const User = require('./models/User')
+
+//const router = require('express').Router();
 
 
 app.get('/', (req, res) => {
@@ -210,4 +240,24 @@ mongoose
         console.log('conectou no banco')
     })
     .catch((err)=> console.log(err))
+
+
+
+//BUSCA DOS CUIDADORES--------------------------------------------------------------------------------------------------------
+
+
+
+  
+  // ...
+  
+  // Rota para buscar cuidadores
+  app.get('/buscar', authenticateUser, CuidadorController.buscarCuidadores);
+
+
+  // Exporte o middleware como parte de um objeto
+  module.exports = { authenticateUser };
+  
+
+  
+
 
