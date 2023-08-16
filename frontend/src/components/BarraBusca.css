@@ -1,0 +1,33 @@
+.barraBusca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.barraBusca input{
+    width: 85%;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 6px;
+    background-color: rgba(204, 204, 204, 0.425);
+}
+
+.barraBusca button{
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 100px;
+    height: 35px;  
+    border-radius: 4px;
+    background-color: #ffa600;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+.barraBusca  button:hover {
+    background: #FFBD59; 
+  }
+  

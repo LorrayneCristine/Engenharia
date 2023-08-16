@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CadastroCuidador.css';
 import dogs from '../assets/imgs/dogs.png';
 import logo from '../assets/imgs/Logo.png';
@@ -32,15 +32,34 @@ const CadastroCuidador = () => {
     dailyServicePrice: '',
     weeklyServicePrice: '',
     nameOrganization: '',
+    address: '',      
+    numberHome: '',    
+    city: '',
+    state: '',
+    country: 'Brasil',   
 
   });
+
+  useEffect(() => {
+    async function fetchStates() {
+      try {
+        const response = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+        setStatesList(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar estados:', error);
+      }
+    }
+  
+    fetchStates();
+  }, []);
 
   const [error, setError] = useState(null);
   const [checkboxError, setCheckboxError] = useState('');
   const [imageError, setImageError] = useState('');
+  const [statesList, setStatesList] = useState([]);
+  const [citiesList, setCitiesList] = useState([]);
 
-
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value, type, checked, files } = e.target;
 
     if (type === 'checkbox') {
@@ -72,13 +91,30 @@ const CadastroCuidador = () => {
         ...formData,
         [name]: parseFloat(value), // Converte o valor para um número de ponto flutuante
       });
-    } else {
+    } else if (name === 'city' || name === 'state' || name === 'country') {
       setFormData({
         ...formData,
         [name]: value,
       });
+    }else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    } 
+  };
+
+  const handleStateChange = async (e) => {
+    const selectedState = e.target.value;
+
+    try {
+      const response = await axios.get(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`
+      );
+      setCitiesList(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar cidades:', error);
     }
-    
   };
 
   const handleSubmit = async (e) => {
@@ -95,7 +131,7 @@ const CadastroCuidador = () => {
       return;
     } else {
       setCheckboxError('');
-    }
+    }  
 
     const animalTypesObj = {
       dogs: formData.animalTypes.dogs,
@@ -129,6 +165,16 @@ const CadastroCuidador = () => {
     formDataCopy.append('image1', formData.image1);
     formDataCopy.append('image2', formData.image2);
     formDataCopy.append('image3', formData.image3);
+    
+    const selectedState = statesList.find(state => state.sigla === formData.state);
+    const stateName = selectedState ? selectedState.nome : '';
+    formDataCopy.append('state', stateName);
+    
+    formDataCopy.append('city', formData.city);
+    formDataCopy.append('country', formData.country);
+    formDataCopy.append('address', formData.address);
+    formDataCopy.append('numberHome', formData.numberHome);
+
     formDataCopy.append('servicesIncluded', JSON.stringify(servicesIncludedObj));
     formDataCopy.append('dailyServicePrice', formData.dailyServicePrice);
     formDataCopy.append('weeklyServicePrice', formData.weeklyServicePrice);
@@ -184,6 +230,11 @@ const CadastroCuidador = () => {
           dailyServicePrice: '',
           weeklyServicePrice: '',
           nameOrganization: '',
+          state: '', // Limpa o campo de estado
+          city: '', // Limpa o campo de cidade
+          country: 'Brasil', // Mantém o país como 'Brasil'
+          address: '', // Limpa o campo de endereço
+          numberHome: '', // Limpa o campo de número da casa
         });
       }else{
         console.error('Erro ao cadastrar no front', response.data)
@@ -423,7 +474,69 @@ const CadastroCuidador = () => {
                   placeholder="Nome da organização ou cuidador (aparecerá na busca)"
                 />
               </div>
+            <div className='compacto'>
+              <div className="geralItens">
+                <select
+                  name="state"
+                  value={formData.state}
+                  onChange={(e) => {
+                    handleChange(e);
+                    handleStateChange(e);
+                  }}
+                  required
+                >
+                  <option value="">Selecione o Estado</option>
+                  {statesList.map((state) => (
+                    <option key={state.sigla} value={state.sigla}>
+                      {state.nome}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
+              <div className="geralItens">
+                <select
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Selecione a Cidade</option>
+                  {citiesList.map((city) => (
+                    <option key={city.id} value={city.nome}>
+                      {city.nome}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className='compacto'>
+              <div className='compacto-2'>
+                <div className="geralItens">
+                    <input
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                        required
+                        placeholder="Endereço"
+                      />
+                  </div>
+
+                  <div className="geralItens">
+                    <input
+                      type="text"
+                      name="numberHome"
+                      value={formData.numberHome}
+                      onChange={handleChange}
+                      required
+                      placeholder="Número"
+                    />
+                  </div>
+              </div>
+              
+              </div>
               <Link to="/login" className="link-cadastro">
                 Já possuo cadastro
               </Link>

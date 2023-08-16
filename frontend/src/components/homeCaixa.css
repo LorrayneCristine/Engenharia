@@ -1,0 +1,35 @@
+.geralIntroHome{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding-top: 30px;
+
+}
+
+.geralIntroHome .caixa{
+    width: 95%;
+    display: flex;   
+    flex-direction: row;
+    border-radius: 10px;
+    background: rgba(255, 139, 30, 0.863);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.288);
+    justify-content: space-between;
+
+}
+.geralIntroHome .caixa .divisao{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.geralIntroHome .caixa .texto{
+    padding-left: 40px;
+    padding-top: 20px;
+    height: 150px;
+}
+
+.geralIntroHome .dog{
+    margin-left: 40px;
+}

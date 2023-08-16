@@ -1,0 +1,177 @@
+/* homeCuidadores.css */
+
+.Pesquisa_cuidadores {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+   
+  }
+
+.Pesquisa_cuidadores h2{
+  text-align: center;
+  padding-top: 20px;
+  color: rgba(250, 126, 10, 0.849);
+}
+.Pesquisa_cuidadores h3{
+  margin-left: 15px;
+}
+
+
+.Pesquisa_cuidadores .geralPesquisa .divisao{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.363);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);   
+    padding: 5px;
+    margin-top: 10px;
+    width: 900px;
+  }
+
+.Pesquisa_cuidadores .geralPesquisa{
+   display: flex;
+   width: 100%;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   align-content: center;
+   justify-items: center;
+
+
+}
+
+
+.Pesquisa_cuidadores .geralPesquisa .divisao .img_divisao{
+    padding-left: 35px;
+}
+.Pesquisa_cuidadores .geralPesquisa .divisao .dados_divisao{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(250, 126, 10, 0.849);
+    justify-content: space-between;
+    height: 195px;
+    width: 60%;
+    border-radius: 4px;
+}
+
+
+.Pesquisa_cuidadores .geralPesquisa .carousel-image img {
+    width: 260px;
+    height: 200px; /* ou a altura desejada */
+    object-fit: cover;
+  }
+
+.Pesquisa_cuidadores .carousel-image {
+    width: 260px;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Carrossel styles */
+  
+.Pesquisa_cuidadores .carousel {
+    width: 100%;
+  }
+  
+ 
+.Pesquisa_cuidadores  .carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  
+.Pesquisa_cuidadores .carousel-item {
+    display: none;
+    position: relative;
+    width: 100%;
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  
+.Pesquisa_cuidadores .carousel-item.active {
+    display: block;
+  }
+  
+  
+.Pesquisa_cuidadores .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    list-style: circle;
+    padding: 0;
+  }
+  
+  
+.Pesquisa_cuidadores .carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: none;
+  }
+  
+ 
+.Pesquisa_cuidadores  .carousel-indicators li.active {
+    background-color: #333;
+  }
+
+  .Pesquisa_cuidadores p{
+    font-size: 12px;
+    margin-left: 15px;
+  }
+.Pesquisa_cuidadores .nome_cuidador{
+    font-size: 15px;
+    height: 18px;
+}
+.Pesquisa_cuidadores .dados_divisao .dados_grana{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: rgb(21, 21, 121);
+}
+.Pesquisa_cuidadores .dados_divisao .dados_grana p{
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;
+}
+.Pesquisa_cuidadores .dados_divisao .dados_grana h3{
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0;
+}
+.Pesquisa_cuidadores .geralPesquisa .divisao button{
+ 
+  opacity: 0;
+}
+.Pesquisa_cuidadores .geralPesquisa .divisao .services{
+  font-weight: bold;
+
+}
+.Pesquisa_cuidadores .geralPesquisa .divisao .dados_divisao button{
+  margin-bottom: 10px;
+  opacity: 1;
+  margin-top: 25px;
+  width: 100px;
+  height: 35px;  
+  border-radius: 4px;
+  background-color: #02063d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.Pesquisa_cuidadores .reserva button:hover {
+  background: #04065f73; 
+}

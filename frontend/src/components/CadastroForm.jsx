@@ -197,7 +197,7 @@ const CadastroForm = () => {
               </div>
               <Link to="/login" className = "link-cadastro">Já possuo cadastrado</Link> 
               <p className='cadastro_ou'>ou</p>
-              <Link to="/login" className = "link-cadastro">Quero me cadastrar como cuidador</Link> 
+              <Link to="/auth/registeCuidador" className = "link-cadastro">Quero me cadastrar como cuidador</Link> 
 
               <button type="submit" onClick={handleCadastroClick}>
                 Cadastrar

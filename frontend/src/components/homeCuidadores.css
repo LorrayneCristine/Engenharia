@@ -1,0 +1,108 @@
+/* homeCuidadores.css */
+
+.geralCardsHome {
+    width: 1000px;
+    height: 720px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+    background: rgba(78, 78, 78, 0.062);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.507);
+  }
+  
+  
+.geralCardsHome .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+  }
+  
+  
+.geralCardsHome .col-md-4 {
+    flex: 0 0 calc(33.3333% - 30px);
+    margin: 15px;
+    margin-bottom: 10px;
+  }
+  
+  
+.geralCardsHome .card_home {
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.521);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.356);   
+    padding: 5px;
+  }
+  
+  .carousel-image img {
+    width: 100%;
+    height: 150px; /* ou a altura desejada */
+    object-fit: cover;
+  }
+
+.geralCardsHome .carousel-image {
+    width: 95%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  /* Carrossel styles */
+  
+.geralCardsHome .carousel {
+    width: 100%;
+  }
+  
+ 
+.geralCardsHome  .carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  
+.geralCardsHome .carousel-item {
+    display: none;
+    position: relative;
+    width: 100%;
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  
+.geralCardsHome .carousel-item.active {
+    display: block;
+  }
+  
+  
+.geralCardsHome .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    list-style: none;
+    padding: 0;
+  }
+  
+  
+.geralCardsHome .carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+ 
+.geralCardsHome  .carousel-indicators li.active {
+    background-color: #333;
+  }
+
+  .geralCardsHome p{
+    font-size: 12px;
+    margin-left: 15px;
+  }
+.geralCardsHome .nome_cuidador{
+    font-size: 15px;
+    height: 18px;
+}

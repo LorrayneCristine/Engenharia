@@ -1,0 +1,38 @@
+.logoGeralCadastro{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.logoGeralCadastro .logo{
+    padding-left: 90px;
+    width: 80%;
+    display: flex;
+    justify-content: center; /* Alinha horizontalmente ao centro */
+    align-items: center; /* Alinha verticalmente ao centro */
+    height: 100px; /* Defina uma altura para o contêiner (por exemplo, 100% da altura da janela de visualização) */
+    padding-top: 20px;
+    
+}
+.logoGeralCadastro .logo img{
+    height: 50px;
+    align-items: center;
+}
+.logoGeralCadastro .LoginCadastro{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+    width: 145px;
+}
+
+.logoGeralCadastro .LoginCadastro img{
+    padding-left: 10px;
+    width: 30px;
+}
+.logoGeralCadastro .LoginCadastro a{
+    color: #ffa600 ;
+    width: 100%;
+    padding: 0;
+}

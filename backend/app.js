@@ -192,10 +192,125 @@ app.post("/auth/login", async (req, res) =>{
     
 
 })
+app.use('/backend/uploads', express.static(path.join(__dirname, 'uploads')));
+const CuidadorHome = require('./models/Cuidador'); 
+
+app.get('/home', async (req, res) => {
+    try {
+      const cuidadores = await CuidadorHome.aggregate([{ $sample: { size: 6 } }]);
+      const cuidadoresFormatados = cuidadores.map(cuidador => {
+        return {
+            _id: cuidador._id,
+            src: cuidador.src.map(imageUrl => `http://localhost:3000/backend/${imageUrl}`), // Corrija a URL das imagens    
+            nameOrganization: cuidador.nameOrganization,
+            address: cuidador.address,
+            numberHome : cuidador.numberHome,
+            city: cuidador.city, 
+            state: cuidador.state,
+            phone: cuidador.phone,
+            animalTypes: cuidador.animalTypes,
+            servicesIncluded: cuidador.servicesIncluded
+        };
+      });
+      
+      res.json(cuidadoresFormatados);
+    } catch (error) {
+      console.error('Erro ao buscar cuidadores aleatórios:', error);
+      res.status(500).json({ error: 'Erro ao buscar cuidadores aleatórios' });
+    }
+  });
+  
+
+
 
   
 const cuidadorRouter = require ("./routes/cuidador");
 app.use("/cuidador", cuidadorRouter);
+
+app.get('/search/:query', async (req, res) => {
+    const { query } = req.params;
+    console.log(query)
+    try {
+      const cuidadoresDisponiveis = await Cuidador.aggregate([
+        {
+          $match: {
+            $or: [
+              { city: query },
+              {
+                city: {
+                  $regex: `^${query}$`,
+                  $options: 'i'
+                }
+              },
+              {
+                city: {
+                  $regex: `^${query.slice(0, -1)}[a-z]?$`,
+                  $options: 'i'
+                }
+              },
+              {
+                city: {
+                  $regex: `^${query.slice(0, -2)}[a-z]{0,2}?$`,
+                  $options: 'i'
+                }
+              },
+              {
+                nameOrganization: {
+                  $regex: `^${query}`,
+                  $options: 'i'
+                }
+              },
+              {
+                nameOrganization: {
+                  $regex: `^${query.slice(0, -1)}[a-z]?$`,
+                  $options: 'i'
+                }
+              },
+              {
+                nameOrganization: {
+                  $regex: `^${query.slice(0, -2)}[a-z]{0,2}?$`,
+                  $options: 'i'
+                }
+              }
+            ]
+          }
+        }
+      ]);
+
+  
+      const cuidadoresFormatados = await Promise.all(
+        cuidadoresDisponiveis.map(async (cuidador) => {
+            console.log(cuidadoresDisponiveis)
+
+          const imagens = await Promise.all(
+            cuidador.src.map((imageUrl) => {
+              const imageSrc = `http://localhost:3000/backend/${imageUrl}`;
+              return imageSrc;
+            })
+          );
+  
+          return {
+            ...cuidador,
+            src: imagens
+          };
+        })
+      );
+
+  
+      res.json(cuidadoresFormatados);
+    } catch (error) {
+      console.error('Erro ao buscar cuidadores:', error);
+      res.status(500).json({ error: 'Erro ao buscar cuidadores' });
+    }
+  });
+  
+  
+  
+
+
+  
+
+
 
 
 const dbUser = process.env.DB_USER

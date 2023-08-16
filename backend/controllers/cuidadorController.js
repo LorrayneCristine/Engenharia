@@ -21,14 +21,22 @@ exports.create = async (req, res) => {
             dailyServicePrice,
             weeklyServicePrice,
             nameOrganization,
+
+            address,      
+            numberHome, 
+            state, // Inclua o estado no objeto do cuidador
+            city, // Inclua a cidade no objeto do cuidador
+            country,
+
             animalTypes,
             servicesIncluded,
         } = req.body
 
+        console.log(req.body); // Verifique se todos os campos estão presentes no corpo da solicitação
+        console.log(state, city, country, address, numberHome); // Verifique se esses campos estão sendo corretamente recebidos
 
         const animalTypesObj = JSON.parse(animalTypes);
         const servicesIncludedObj = JSON.parse(servicesIncluded);
-        console.log(servicesIncludedObj, animalTypesObj)
             
         // Verificar se pelo menos um animal está selecionado
         if (!(animalTypesObj.dogs || animalTypesObj.cats || animalTypesObj.birds)) {
@@ -87,6 +95,12 @@ exports.create = async (req, res) => {
             dailyServicePrice,
             weeklyServicePrice,
             nameOrganization,
+
+            state, // Inclua o estado no objeto do cuidador
+            city, // Inclua a cidade no objeto do cuidador
+            country, // Inclua o país no objeto do cuidador
+            address,      
+            numberHome, 
 
             animalTypes: animalTypesObj,
             servicesIncluded:servicesIncludedObj
