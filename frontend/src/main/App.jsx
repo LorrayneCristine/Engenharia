@@ -5,6 +5,7 @@ import LoginPage from '../pages/LoginUsuario';
 import CadastroPageCuidador from '../pages/CadastroCuidador';
 import HomeCuidadoresPage from '../pages/homePage';
 import PesquisaCuidador from '../pages/PesquisaCuidador';
+import CuidadorDetalhesReserva from '../pages/CuidadorPage'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/auth/registeCuidador" element={<CadastroPageCuidador />} />
         <Route path="/" element={<HomeCuidadoresPage />} />
         <Route path="/search/:query" element={<PesquisaCuidador />} />
+        <Route path="/cuidador/:id" element={<CuidadorDetalhesReserva />} />
       </Routes>
     </Router>
   );

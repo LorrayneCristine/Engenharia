@@ -305,6 +305,29 @@ app.get('/search/:query', async (req, res) => {
   });
   
   
+  app.get('/cuidador/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const cuidador = await Cuidador.findById(id);
+      if (!cuidador) {
+        return res.status(404).json({ error: 'Cuidador não encontrado' });
+      }
+  
+      const imagens = cuidador.src.map(imageUrl => `http://localhost:3000/backend/${imageUrl}`);
+      
+      const cuidadorFormatado = {
+        ...cuidador.toObject(),
+        src: imagens
+      };
+  
+      res.json(cuidadorFormatado);
+    } catch (error) {
+      console.error('Erro ao buscar cuidador:', error);
+      res.status(500).json({ error: 'Erro ao buscar cuidador' });
+    }
+  });
+  
   
 
 

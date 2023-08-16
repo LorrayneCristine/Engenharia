@@ -171,6 +171,10 @@
   border: none;
   cursor: pointer;
 }
+.Pesquisa_cuidadores .geralPesquisa .divisao .dados_divisao a:-webkit-any-link {
+  text-decoration: none;
+  color: #fff;
+}
 
 .Pesquisa_cuidadores .reserva button:hover {
   background: #04065f73; 

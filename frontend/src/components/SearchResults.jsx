@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importe o hook useParams corretamente
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
+import { Link } from 'react-router-dom';
 import './SearchResults.css'
 
 const SearchResults = () => {
@@ -72,7 +73,9 @@ const SearchResults = () => {
                 <div className='dados_grana'>
                     <p>Valor diário:</p>
                     <h3>R$ {cuidador.dailyServicePrice}</h3>
-                    <button className='reserva'>Fazer reserva</button>
+                    <button className='reserva'>
+                      <Link to={`/cuidador/${cuidador._id}`}>Fazer reserva</Link>
+                    </button>
 
                 </div>
                 
