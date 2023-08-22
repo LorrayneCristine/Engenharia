@@ -16,6 +16,9 @@ const Cuidador = require ('./models/Cuidador')
 
 const User = require('./models/User')
 
+const Reserve = require('./models/Reserva')
+
+const Cliente = require('./models/Cliente')
 
 app.get('/', (req, res) => {
     res.status(200).json({ msg: "teste rota get"})
@@ -325,6 +328,58 @@ app.get('/search/:query', async (req, res) => {
     } catch (error) {
       console.error('Erro ao buscar cuidador:', error);
       res.status(500).json({ error: 'Erro ao buscar cuidador' });
+    }
+  });
+
+  app.post('/reserva', async (req, res) => {
+
+    const{cpfcliente, cpfcuidador, dateOfReserve}= req.body
+
+    //creat user 
+    const reserve = new Reserve({
+      cpfcliente,
+      cpfcuidador,
+      dateOfReserve,
+    })
+  
+    try{
+
+        await reserve.save()
+        res
+            .status(201)
+            .json({
+                msg: 'Reserva realizada com sucesso'
+            })
+
+    }catch(error){
+        console.log(error)
+        res
+            .status(500)
+            .json({
+                msg: 'Aconteceu um erro no servidor'
+            })
+    }
+  });
+
+  app.get('/cliente/:cpf', async (req, res) => {
+    const { cpf } = req.params;
+
+    const query = {cpfcliente: cpf}
+
+    try {
+      const cliente = await Cliente.findByOne(query);
+      if (!cliente) {
+        return res.status(404).json({ error: 'Cuidador não encontrado' });
+      }
+      
+      const clienteFormatado = {
+        ...cliente.toObject(),
+      };
+  
+      res.json(clienteFormatado);
+    } catch (error) {
+      console.error('Erro ao buscar cliente:', error);
+      res.status(500).json({ error: 'Erro ao buscar cliente' });
     }
   });
   

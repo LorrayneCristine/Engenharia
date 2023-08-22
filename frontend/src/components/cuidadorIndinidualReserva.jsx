@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import axios from 'axios';
 import './cuidadorIndividualReserva.css'
+import { ClientRequest } from 'http';
 
 const CuidadorDetails = () => {
   const { id } = useParams();
+  //const { cpf } = useParams();
   const [cuidadorDetails, setCuidadorDetails] = useState(null);
+  //const [clienteDetails, setClienteDetails] = useState(null);
 
   const getAnimalTypes = (animalTypes) => {
     const types = [];
@@ -24,6 +27,37 @@ const CuidadorDetails = () => {
     return types.join(', ');
   }
 
+  const handleSubmit = async (e) => {
+    try {
+
+      axios
+        .post("http://localhost:3000/Reserva", {
+          cpfcliente: "c323232323232",
+          cpfcuidador: cuidadorDetails.cpf,
+          dateOfReserve: new Date(),
+      })
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            console.log('Reserva realizada com sucesso');
+          } else {
+            console.error('Erro ao reservar');
+          }
+      })
+      .catch((error) => {
+        if (error.response && error.response.data && error.response.data.msg) {
+        } else {
+          console.error('Erro ao enviar requisição:', error.message);
+        }
+      });
+    } catch (error) {
+      console.error('Erro ao enviar requisição', error);
+    }
+  };
+
+  const handleReservaClick = (e) => {
+    handleSubmit(e)
+  }
 
 
   useEffect(() => {
@@ -38,6 +72,20 @@ const CuidadorDetails = () => {
     }
     fetchCuidadorDetails();
   }, [id]);
+
+  //  useEffect(() => {
+  //    async function fetchreserveDetails(){
+  //      try {
+  //        //const response = await axios.get(`http://localhost:3000/cliente/${cpf}`);
+  //        //setClienteDetails(response.data);
+  //        const response = await axios.get(`http://localhost:3000/cliente/323232323232`);
+  //      } catch (error) {
+  //        console.log(error);
+  //        console.error('Erro ao buscar detalhes do cliente:', error);
+  //      }
+  //    }
+  //    fetchreserveDetails();
+  //  }, ["323232323232"]);
 
   if (!cuidadorDetails) {
     return <p>Carregando...</p>;
@@ -71,7 +119,7 @@ const CuidadorDetails = () => {
                 <div className='dados_grana'>
                     <p>Valor diário:</p>
                     <h3>R$ {cuidadorDetails.dailyServicePrice}</h3>
-                    <button className='reserva'>
+                    <button className='reserva' onClick={handleReservaClick}>
                       Fazer reserva
                     </button>
                 </div>
